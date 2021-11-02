@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <!-- both client and server side : form validation -->
+    <!-- js : runs on client side on browser only -->
+    <style>
+        body{
+            background-color: cadetblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #form-container{
+            background-color: white;
+            padding: 50px;
+            text-align: center;
+        }
+        h2{
+            margin: 0px 0px 10px 0px;
+        }
+        input{
+            width: 200px;
+            margin: 10px 10px;
+            padding: 10px;
+
+        }
+        input[type="submit"]{
+            width: 220px;
+            background-color: cadetblue;
+            border: 0px;
+            color: white;
+
+        }
+        .error{
+            color: red;
+            margin: 0px;
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <div id="form-container">
+        <h2>Login</h2>
+        <form action="" onsubmit="return validateForm()"> <!--validateForm() returns true: then form will be subiteed if it returns false it will not be submitted-->
+            <input type="text" placeholder="User Name" id="username"><br>
+            <p id="userError" class="error"></p>
+            <input type="password" placeholder="password" id="password"><br>
+            <p id="passError" class="error"></p>
+            <input type="submit">
+        </form>
+    </div>
+
+
+    <!-- js -->
+    <script>
+        let username=document.getElementById("username"); //select both username and password element and store in variable
+        let password=document.getElementById("password");
+        let flag=1;   //set flag=0 for wrong validation and set flag=1 for correct values true  validation
+
+        function validateForm(){
+            if(username.value == ""){
+               document.getElementById("userError").innerHTML = "User Name is empty."
+               flag = 0;
+            }
+            else if(username.value.length < 3)
+            {
+                document.getElementById("userError").innerHTML = "User Name requires minimum 3 char."
+                flag = 0;
+            }
+            else{
+                document.getElementById("userError").innerHTML = "";  //when validation completes clean it by ""
+                flag = 1;
+            }
+
+            if(password.value == ""){
+                document.getElementById("passError").innerHTML = "Password is empty.";
+                flag = 0;
+
+            }
+            else{
+                document.getElementById("passError").innerHTML = "";
+                flag =1;
+            }
+            
+
+            if(flag){
+                return true;              //by default flag=1 so it will return true else return false
+            }
+            else{
+                return false;
+            }
+        }
+    </script>
+    
+</body>
+</html>
